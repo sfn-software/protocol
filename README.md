@@ -17,6 +17,11 @@ L1 | `0x02` | DONE | Signals that no more opcodes will be sent.
 L3 | `0x03` | MD5_WITH_FILE | _(outdated)_
 L4 | `0x04` | FILE_WITH_MD5 |
 
+When an unknown opcode is encountered, implementations are expected to:
+
+1) show a warning to the user;
+2) stop reading incoming data (but finish sending files if there are any left).
+
 ## FILE
 
 ```
