@@ -1,8 +1,38 @@
+
+
+#### 0x01 (`FILE` chunk)
+
+
+#### 0x03 (`FILE_WITH_MD5` chunk)
+
+|        |                                             |                               |                                                       |               |
+| ------ | ------------------------------------------- | ----------------------------- | ----------------------------------------------------- | ------------- |
+| `0x03` | Filename (UTF-8),<br />end with `0x0A` (LF) | Size (64 bits, little endian) | MD5 sum (ASCII hex string),<br />end with `0x0A` (LF) | File contents |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # sfn protocol
 
-Binary protocol. General scheme:
+Protocol TCP stream consists of chunks, one after another, each started by chunk opcode. Each client **must** send `0x02` (DONE) when it doesn't intend to send chunks anymore.
 
-`<1-byte opcode> <sequence of unknown length>` (repeat many times)
+|           |     |           |               |
+| --------- | --- | --------- | ------------- |
+| [Chunk 1] | ... | [Chunk N] | `0x02` (DONE) |
 
 ## Protocol revisions
 
@@ -24,12 +54,10 @@ When an unknown opcode is encountered, implementations are expected to:
 
 ## FILE
 
-```
-OPCODE:   0x01
-FILENAME: utf-8 string terminated by \n
-FILESIZE: 64-bit unsigned integer, little endian
-DATA:     exactly FILESIZE bytes
-```
+|        |                                                      |                               |               |
+| ------ | ---------------------------------------------------- | ----------------------------- | ------------- |
+| `0x01` | Filename (UTF-8),<br />terminated by `\n` (LF, 0x0A) | Size (64 bits, little endian) | File contents |
+
 
 ## MD5_WITH_FILE
 
