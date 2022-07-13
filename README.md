@@ -76,3 +76,5 @@ IS_EXECUTABLE: one byte, 1 if yes, 0 if no or don't care
 DATA:          exactly FILESIZE bytes
 MD5:           ascii hexadecimal string, terminated by \n, empty string if not implemented by sender
 ```
+
+A file **should** be considered executable if at least one `x` is present in the Unix `rwx rwx rwx` tuple. On Windows, this is most likely to be ignored.
