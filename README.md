@@ -69,7 +69,7 @@ MD5:      ascii hexadecimal string, terminated by \n
 
 ```
 OPCODE:   0x05
-DIRNAME:  utf-8 string terminated by \n, may be empty, examples: "", "folder1", "folder1/subfolder1"
+DIRNAME:  utf-8 string terminated by \n, may be empty, separator "/", examples: "", "folder1", "folder1/subfolder1"
 FILENAME: utf-8 string terminated by \n
 FILESIZE: 64-bit unsigned integer, little endian
 DATA:     exactly FILESIZE bytes
