@@ -64,3 +64,14 @@ MD5:      ascii hexadecimal string, terminated by \n
 
 * A workaround to allow clients to support 0x04 without actually implementing MD5
 * Directories
+
+### FILE_L5
+
+```
+OPCODE:   0x05
+DIRNAME:  utf-8 string terminated by \n, may be empty, examples: "", "folder1", "folder1/subfolder1"
+FILENAME: utf-8 string terminated by \n
+FILESIZE: 64-bit unsigned integer, little endian
+DATA:     exactly FILESIZE bytes
+MD5:      ascii hexadecimal string, terminated by \n, empty string if not implemented by sender
+```
