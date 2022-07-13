@@ -68,10 +68,11 @@ MD5:      ascii hexadecimal string, terminated by \n
 ### FILE_L5
 
 ```
-OPCODE:   0x05
-FILENAME: utf-8 string terminated by \n
-FILESIZE: 64-bit unsigned integer, little endian
-FILEPATH: utf-8 string terminated by \n, may be empty, separator "/", examples: "", "folder1", "folder1/subfolder1"
-DATA:     exactly FILESIZE bytes
-MD5:      ascii hexadecimal string, terminated by \n, empty string if not implemented by sender
+OPCODE:        0x05
+FILENAME:      utf-8 string terminated by \n
+FILESIZE:      64-bit unsigned integer, little endian
+FILEPATH:      utf-8 string terminated by \n, may be empty, separator "/", examples: "", "folder1", "folder1/subfolder1"
+IS_EXECUTABLE: one byte, 1 if yes, 0 if no or don't care
+DATA:          exactly FILESIZE bytes
+MD5:           ascii hexadecimal string, terminated by \n, empty string if not implemented by sender
 ```
