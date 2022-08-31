@@ -27,6 +27,7 @@ L1 | `0x01` | FILE |
 L1 | `0x02` | DONE | Signals that no more opcodes will be sent.
 L3 | `0x03` | MD5_WITH_FILE | _(outdated)_
 L4 | `0x04` | FILE_WITH_MD5 |
+L5 | `0x05` | FILE_L5 |
 
 When an unknown opcode is encountered, implementations **should:**
 
