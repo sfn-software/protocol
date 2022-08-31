@@ -42,6 +42,8 @@ When an unknown opcode is encountered, implementations are expected to:
 
 ### MD5_WITH_FILE
 
+* Outdated: checksum needs to be calculated before start of transmission, slowing things down
+
 ```
 OPCODE:   0x03
 FILENAME: utf-8 string terminated by \n
@@ -51,6 +53,8 @@ DATA:     exactly FILESIZE bytes
 ```
 
 ### FILE_WITH_MD5
+
+* Faster checksumming (can be done in parallel with transmission)
 
 ```
 OPCODE:   0x04
