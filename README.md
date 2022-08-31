@@ -69,6 +69,7 @@ MD5:      ascii hexadecimal string, terminated by \n
 
 * Fast checksumming, also it's optional now
 * Directories (both sides can choose to ignore them to reduce codebase size)
+* Executable flag, also optional
 
 ```
 OPCODE:        0x05
