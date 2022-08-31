@@ -28,7 +28,7 @@ L1 | `0x02` | DONE | Signals that no more opcodes will be sent.
 L3 | `0x03` | MD5_WITH_FILE | _(outdated)_
 L4 | `0x04` | FILE_WITH_MD5 |
 
-When an unknown opcode is encountered, implementations are expected to:
+When an unknown opcode is encountered, implementations **should:**
 
 1) show a warning to the user;
 2) stop reading incoming data (but finish sending files if there are any left).
@@ -64,12 +64,11 @@ DATA:     exactly FILESIZE bytes
 MD5:      ascii hexadecimal string, terminated by \n
 ```
 
-# Plans for future versions
-
-* A workaround to allow clients to support 0x04 without actually implementing MD5
-* Directories
 
 ### FILE_L5
+
+* Fast checksumming, also it's optional now
+* Directories (both sides can choose to ignore them to reduce codebase size)
 
 ```
 OPCODE:        0x05
@@ -78,7 +77,12 @@ FILESIZE:      64-bit unsigned integer, little endian
 FILEPATH:      utf-8 string terminated by \n, may be empty, separator "/", examples: "", "folder1", "folder1/subfolder1"
 IS_EXECUTABLE: one byte, 1 if yes, 0 if no or don't care
 DATA:          exactly FILESIZE bytes
-MD5:           ascii hexadecimal string, terminated by \n, empty string if not implemented by sender
+MD5:           ascii hexadecimal string (empty if not implemented by sender) terminated by \n
 ```
 
-A file **should** be considered executable if at least one `x` is present in the Unix `rwx rwx rwx` tuple. On Windows, this is most likely to be ignored.
+A file **should** be considered executable if at least one `x` is present in the Unix `rwx rwx rwx` tuple. On Windows, this field **should** be ignored.
+
+
+# Plans for future versions
+
+* None yet, L5 seems good enough. Maybe parallel transfers?
