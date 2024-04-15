@@ -1,12 +1,3 @@
-* [sfn protocol](#sfn-protocol)
-   * [Protocol revisions](#protocol-revisions)
-   * [Opcodes](#opcodes)
-   * [FILE](#file)
-   * [MD5_WITH_FILE](#md5_with_file)
-   * [FILE_WITH_MD5](#file_with_md5)
-* [Next version](#next-version)
-
-
 # sfn protocol
 
 Protocol TCP stream consists of chunks, one after another, each started by chunk opcode. Each client **must** send `0x02` (DONE) when it doesn't intend to send chunks anymore.
