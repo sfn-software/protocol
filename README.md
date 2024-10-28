@@ -1,12 +1,14 @@
 # sfn protocol
 
+sfn is a lightweight protocol for sending files over a TCP connection. It is designed to be simple, portable, and easy to implement on new platforms. The most typical use case for sfn would be sending a bunch of files over a LAN where maximum speed is required, although it works just as well over the internet with a bit of port forwarding.
+
 ### Protocol revisions
 
 L1 is the most basic one, L3 has checksum support, L4 has faster checksum support, L5 has directories, executable flag, and checksums are now optional. They are all backward-compatible: every new revision includes support for existing opcodes all the way back to L1.
 
 ### Structure
 
-Protocol TCP stream consists of chunks, sent one after another, each started by chunk opcode. Each client **must** send `0x02` (DONE) when it doesn't intend to send chunks anymore.
+Protocol TCP stream consists of chunks, sent one after another, each started by chunk opcode. Each client **must** send `0x02` (DONE) when it doesn't intend to send any more chunks.
 
 |           |     |           |               |
 | --------- | --- | --------- | ------------- |
@@ -77,6 +79,9 @@ MD5:           ascii hexadecimal string (empty if not implemented by sender) ter
 
 A file **should** be considered executable if at least one `x` is present in the Unix `rwx rwx rwx` tuple. On Windows, this field **should** be ignored.
 
+### Choosing a default opcode
+
+At the time of writing, most sfn implementations support L4, so it currently makes sense to implement L5 and then default to FILE_WITH_MD5 with options to upgrade to FILE_L5 / downgrade to FILE.
 
 # Plans for future versions
 
