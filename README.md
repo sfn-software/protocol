@@ -1,14 +1,16 @@
 # sfn protocol
 
-Protocol TCP stream consists of chunks, one after another, each started by chunk opcode. Each client **must** send `0x02` (DONE) when it doesn't intend to send chunks anymore.
+### Protocol revisions
+
+L1 is the most basic one, L3 has checksum support, L4 has faster checksum support, L5 has directories, executable flag, and checksums are now optional. They are all backward-compatible: every new revision includes support for existing opcodes all the way back to L1.
+
+### Structure
+
+Protocol TCP stream consists of chunks, sent one after another, each started by chunk opcode. Each client **must** send `0x02` (DONE) when it doesn't intend to send chunks anymore.
 
 |           |     |           |               |
 | --------- | --- | --------- | ------------- |
 | [Chunk 1] | ... | [Chunk N] | `0x02` (DONE) |
-
-### Protocol revisions
-
-L1 is the most basic one, L3 has checksum support, L4 has faster checksum support. They are backward-compatible: every new revision includes support for existing opcodes all the way back to L1.
 
 ### Opcodes
 
